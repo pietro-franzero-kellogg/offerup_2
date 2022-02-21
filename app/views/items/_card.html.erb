@@ -22,7 +22,11 @@
 
       <dt>Seller</dt>
       <!-- Display seller_id start -->
-      <dd><%= item.seller_id %></dd>
+      <dd>
+        <% if @item.user.present? %>
+          <%= link_to item.user, item.user %>
+        <% end %>
+      </dd>
       <!-- Display seller_id end -->
 
       <dt>Image</dt>
@@ -43,7 +47,11 @@
 
       <dt>Category</dt>
       <!-- Display category_id start -->
-      <dd><%= item.category_id %></dd>
+      <dd>
+        <% if @item.category.present? %>
+          <%= link_to item.category, item.category %>
+        <% end %>
+      </dd>
       <!-- Display category_id end -->
 
       <dt>Available</dt>

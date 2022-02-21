@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= recommendation.user_id %></dd>
+      <dd>
+        <% if @recommendation.user.present? %>
+          <%= link_to recommendation.user, recommendation.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
       <dt>Item</dt>
       <!-- Display item_id start -->
-      <dd><%= recommendation.item_id %></dd>
+      <dd>
+        <% if @recommendation.item.present? %>
+          <%= link_to recommendation.item, recommendation.item %>
+        <% end %>
+      </dd>
       <!-- Display item_id end -->
 
     </dl>

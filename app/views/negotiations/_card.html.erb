@@ -7,7 +7,11 @@
     <dl class="mb-1">
       <dt>Buyer</dt>
       <!-- Display buyer_id start -->
-      <dd><%= negotiation.buyer_id %></dd>
+      <dd>
+        <% if @negotiation.buyer.present? %>
+          <%= link_to negotiation.buyer, negotiation.buyer %>
+        <% end %>
+      </dd>
       <!-- Display buyer_id end -->
 
       <dt>Seller</dt>
@@ -17,7 +21,11 @@
 
       <dt>Item</dt>
       <!-- Display item_id start -->
-      <dd><%= negotiation.item_id %></dd>
+      <dd>
+        <% if @negotiation.item.present? %>
+          <%= link_to negotiation.item, negotiation.item %>
+        <% end %>
+      </dd>
       <!-- Display item_id end -->
 
       <dt>Completed</dt>
