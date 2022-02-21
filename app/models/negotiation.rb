@@ -1,6 +1,8 @@
 class Negotiation < ApplicationRecord
   # Direct associations
 
+  belongs_to :item
+
   belongs_to :buyer,
              :class_name => "User"
 

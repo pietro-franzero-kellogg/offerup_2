@@ -1,6 +1,10 @@
 class Item < ApplicationRecord
   # Direct associations
 
+  has_many   :transactions,
+             :class_name => "Negotiation",
+             :dependent => :destroy
+
   has_many   :recommendations,
              :dependent => :destroy
 
