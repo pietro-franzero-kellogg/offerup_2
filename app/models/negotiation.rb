@@ -1,6 +1,9 @@
 class Negotiation < ApplicationRecord
   # Direct associations
 
+  has_many   :messages,
+             :dependent => :destroy
+
   belongs_to :item
 
   belongs_to :buyer,
