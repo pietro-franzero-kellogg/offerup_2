@@ -7,7 +7,7 @@
     <%= f.label :negotiation_id %>
 
     <!-- Input for negotiation_id start -->
-    <%= f.text_field :negotiation_id, class: "form-control" %>
+    <%= f.collection_select :negotiation_id, Negotiation.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for negotiation_id end -->
   </div>
   <!-- Label and input for negotiation_id end -->

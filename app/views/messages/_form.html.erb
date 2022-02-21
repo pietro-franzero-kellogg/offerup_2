@@ -16,7 +16,7 @@
 
     <%= f.label :negotiation_id %>
     <!-- Input for negotiation_id start -->
-    <%= f.number_field :negotiation_id, class: negotiation_class, placeholder: "Enter negotiation" %>
+    <%= f.collection_select :negotiation_id, Negotiation.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for negotiation_id end -->
     <% if negotiation_was_invalid %>
       <% message.errors.full_messages_for(:negotiation).each do |message| %>
