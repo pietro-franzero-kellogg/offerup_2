@@ -9,6 +9,8 @@ class NegotiationResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :item
+
   belongs_to :buyer,
              resource: UserResource
 

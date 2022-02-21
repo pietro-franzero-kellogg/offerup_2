@@ -13,6 +13,9 @@ class ItemResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :transactions,
+             resource: NegotiationResource
+
   has_many   :recommendations
 
   belongs_to :user,
