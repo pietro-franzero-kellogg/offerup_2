@@ -8,6 +8,9 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :messages,
+             foreign_key: :sender_id
+
   has_many   :transactions,
              resource: NegotiationResource,
              foreign_key: :buyer_id
