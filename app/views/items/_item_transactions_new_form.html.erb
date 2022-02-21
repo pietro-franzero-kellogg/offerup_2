@@ -1,41 +1,23 @@
-<!-- Form negotiation start -->
 <%= form_with(model: @negotiation, local: true) do |f| %>
-<!-- Form negotiation end -->
 
-  <!-- Label and input for buyer_id start -->
   <div class="form-group">
     <%= f.label :buyer_id %>
 
-    <!-- Input for buyer_id start -->
     <%= f.collection_select :buyer_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for buyer_id end -->
   </div>
-  <!-- Label and input for buyer_id end -->
 
-  <!-- Label and input for seller_id start -->
   <div class="form-group">
     <%= f.label :seller_id %>
 
-    <!-- Input for seller_id start -->
     <%= f.text_field :seller_id, class: "form-control" %>
-    <!-- Input for seller_id end -->
   </div>
-  <!-- Label and input for seller_id end -->
 
-  <!-- Label and input for item_id start -->
-  <!-- Input for item_id start -->
   <%= f.hidden_field :item_id, value: @item.id %>
-  <!-- Input for item_id end -->
-  <!-- Label and input for item_id end -->
 
-  <!-- Label and input for completed start -->
   <div class="form-check">
-    <!-- Input for completed start -->
     <%= f.check_box :completed, class: "form-check-input" %>
-    <!-- Input for completed end -->
     <%= f.label :completed, class: "form-check-label" %>
   </div>
-  <!-- Label and input for completed end -->
 
   <%= f.submit "Create negotiation", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

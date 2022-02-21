@@ -1,7 +1,6 @@
 <% was_validated = negotiation.errors.any? %>
 
 <%= form_with(model: negotiation, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for buyer_id start -->
   <div class="form-group">
     <% buyer_class = "form-control" %>
     <% buyer_was_invalid = negotiation.errors.include?(:buyer) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :buyer_id %>
-    <!-- Input for buyer_id start -->
     <%= f.collection_select :buyer_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for buyer_id end -->
     <% if buyer_was_invalid %>
       <% negotiation.errors.full_messages_for(:buyer).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for buyer_id end -->
-  <!-- Label and input for seller_id start -->
   <div class="form-group">
     <% seller_class = "form-control" %>
     <% seller_was_invalid = negotiation.errors.include?(:seller) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :seller_id %>
-    <!-- Input for seller_id start -->
     <%= f.number_field :seller_id, class: seller_class, placeholder: "Enter seller" %>
-    <!-- Input for seller_id end -->
     <% if seller_was_invalid %>
       <% negotiation.errors.full_messages_for(:seller).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for seller_id end -->
-  <!-- Label and input for item_id start -->
   <div class="form-group">
     <% item_class = "form-control" %>
     <% item_was_invalid = negotiation.errors.include?(:item) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :item_id %>
-    <!-- Input for item_id start -->
     <%= f.collection_select :item_id, Item.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for item_id end -->
     <% if item_was_invalid %>
       <% negotiation.errors.full_messages_for(:item).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,8 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for item_id end -->
-  <!-- Label and input for completed start -->
   <div class="form-check">
     <% completed_class = "form-check-input" %>
     <% completed_was_invalid = negotiation.errors.include?(:completed) %>
@@ -103,6 +90,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for completed end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

@@ -1,41 +1,23 @@
-<!-- Form message start -->
 <%= form_with(model: @message, local: true) do |f| %>
-<!-- Form message end -->
 
-  <!-- Label and input for negotiation_id start -->
   <div class="form-group">
     <%= f.label :negotiation_id %>
 
-    <!-- Input for negotiation_id start -->
     <%= f.collection_select :negotiation_id, Negotiation.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for negotiation_id end -->
   </div>
-  <!-- Label and input for negotiation_id end -->
 
-  <!-- Label and input for message start -->
   <div class="form-group">
     <%= f.label :message %>
-    <!-- Input for message start -->
     <%= f.text_area :message, rows: "3", class: "form-control" %>
-    <!-- Input for message end -->
   </div>
-  <!-- Label and input for message end -->
 
-  <!-- Label and input for sender_id start -->
-  <!-- Input for sender_id start -->
   <%= f.hidden_field :sender_id, value: @user.id %>
-  <!-- Input for sender_id end -->
-  <!-- Label and input for sender_id end -->
 
-  <!-- Label and input for receiver_id start -->
   <div class="form-group">
     <%= f.label :receiver_id %>
 
-    <!-- Input for receiver_id start -->
     <%= f.text_field :receiver_id, class: "form-control" %>
-    <!-- Input for receiver_id end -->
   </div>
-  <!-- Label and input for receiver_id end -->
 
   <%= f.submit "Create message", class: "btn btn-block btn-outline-secondary" %>
 <% end %>
