@@ -24,7 +24,12 @@ class RecommendationsController < ApplicationController
     @recommendation = Recommendation.new(recommendation_params)
 
     if @recommendation.save
-      redirect_to @recommendation, notice: 'Recommendation was successfully created.'
+      message = 'Recommendation was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @recommendation, notice: message
+      end
     else
       render :new
     end

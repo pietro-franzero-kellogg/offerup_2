@@ -8,6 +8,7 @@ class NegotiationsController < ApplicationController
 
   # GET /negotiations/1
   def show
+    @message = Message.new
   end
 
   # GET /negotiations/new
@@ -24,7 +25,12 @@ class NegotiationsController < ApplicationController
     @negotiation = Negotiation.new(negotiation_params)
 
     if @negotiation.save
-      redirect_to @negotiation, notice: 'Negotiation was successfully created.'
+      message = 'Negotiation was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @negotiation, notice: message
+      end
     else
       render :new
     end
