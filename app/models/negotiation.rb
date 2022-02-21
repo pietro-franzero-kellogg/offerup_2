@@ -2,12 +2,12 @@ class Negotiation < ApplicationRecord
   # Direct associations
 
   has_many   :messages,
-             :dependent => :destroy
+             dependent: :destroy
 
   belongs_to :item
 
   belongs_to :buyer,
-             :class_name => "User"
+             class_name: "User"
 
   # Indirect associations
 
@@ -18,5 +18,4 @@ class Negotiation < ApplicationRecord
   def to_s
     buyer.to_s
   end
-
 end

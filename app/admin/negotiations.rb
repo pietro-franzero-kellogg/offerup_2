@@ -1,6 +1,5 @@
 ActiveAdmin.register Negotiation do
-
- permit_params :buyer_id, :seller_id, :item_id, :completed
+  permit_params :buyer_id, :seller_id, :item_id, :completed
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,5 +13,4 @@ ActiveAdmin.register Negotiation do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

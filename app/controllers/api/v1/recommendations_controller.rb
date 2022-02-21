@@ -13,7 +13,7 @@ class Api::V1::RecommendationsController < Api::V1::GraphitiController
     recommendation = RecommendationResource.build(params)
 
     if recommendation.save
-      render jsonapi: recommendation, status: 201
+      render jsonapi: recommendation, status: :created
     else
       render jsonapi_errors: recommendation
     end
@@ -33,7 +33,7 @@ class Api::V1::RecommendationsController < Api::V1::GraphitiController
     recommendation = RecommendationResource.find(params)
 
     if recommendation.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: recommendation
     end

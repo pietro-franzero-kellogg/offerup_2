@@ -1,10 +1,11 @@
 class NegotiationsController < ApplicationController
-  before_action :set_negotiation, only: [:show, :edit, :update, :destroy]
+  before_action :set_negotiation, only: %i[show edit update destroy]
 
   # GET /negotiations
   def index
     @q = Negotiation.ransack(params[:q])
-    @negotiations = @q.result(:distinct => true).includes(:buyer, :item, :messages).page(params[:page]).per(10)
+    @negotiations = @q.result(distinct: true).includes(:buyer, :item,
+                                                       :messages).page(params[:page]).per(10)
   end
 
   # GET /negotiations/1
@@ -18,17 +19,16 @@ class NegotiationsController < ApplicationController
   end
 
   # GET /negotiations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /negotiations
   def create
     @negotiation = Negotiation.new(negotiation_params)
 
     if @negotiation.save
-      message = 'Negotiation was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Negotiation was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @negotiation, notice: message
       end
@@ -40,7 +40,7 @@ class NegotiationsController < ApplicationController
   # PATCH/PUT /negotiations/1
   def update
     if @negotiation.update(negotiation_params)
-      redirect_to @negotiation, notice: 'Negotiation was successfully updated.'
+      redirect_to @negotiation, notice: "Negotiation was successfully updated."
     else
       render :edit
     end
@@ -50,22 +50,23 @@ class NegotiationsController < ApplicationController
   def destroy
     @negotiation.destroy
     message = "Negotiation was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to negotiations_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_negotiation
-      @negotiation = Negotiation.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def negotiation_params
-      params.require(:negotiation).permit(:buyer_id, :seller_id, :item_id, :completed)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_negotiation
+    @negotiation = Negotiation.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def negotiation_params
+    params.require(:negotiation).permit(:buyer_id, :seller_id, :item_id,
+                                        :completed)
+  end
 end

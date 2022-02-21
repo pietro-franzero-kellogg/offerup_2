@@ -13,7 +13,7 @@ class Api::V1::NegotiationsController < Api::V1::GraphitiController
     negotiation = NegotiationResource.build(params)
 
     if negotiation.save
-      render jsonapi: negotiation, status: 201
+      render jsonapi: negotiation, status: :created
     else
       render jsonapi_errors: negotiation
     end
@@ -33,7 +33,7 @@ class Api::V1::NegotiationsController < Api::V1::GraphitiController
     negotiation = NegotiationResource.find(params)
 
     if negotiation.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: negotiation
     end

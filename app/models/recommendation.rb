@@ -14,5 +14,4 @@ class Recommendation < ApplicationRecord
   def to_s
     id
   end
-
 end

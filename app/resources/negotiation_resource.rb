@@ -17,5 +17,4 @@ class NegotiationResource < ApplicationResource
              resource: UserResource
 
   # Indirect associations
-
 end
