@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recommendations
   resources :categories
   resources :items
   devise_for :users
