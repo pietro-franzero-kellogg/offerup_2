@@ -3,7 +3,8 @@ class RecommendationsController < ApplicationController
 
   # GET /recommendations
   def index
-    @recommendations = Recommendation.page(params[:page]).per(10)
+    @q = Recommendation.ransack(params[:q])
+    @recommendations = @q.result(:distinct => true).includes(:user, :item).page(params[:page]).per(10)
   end
 
   # GET /recommendations/1

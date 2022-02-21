@@ -3,7 +3,8 @@ class NegotiationsController < ApplicationController
 
   # GET /negotiations
   def index
-    @negotiations = Negotiation.page(params[:page]).per(10)
+    @q = Negotiation.ransack(params[:q])
+    @negotiations = @q.result(:distinct => true).includes(:buyer, :item, :messages).page(params[:page]).per(10)
   end
 
   # GET /negotiations/1
