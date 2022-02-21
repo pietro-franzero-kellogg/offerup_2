@@ -1,6 +1,11 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :transactions,
+             :class_name => "Negotiation",
+             :foreign_key => "buyer_id",
+             :dependent => :destroy
+
   has_many   :recommendations,
              :dependent => :destroy
 
