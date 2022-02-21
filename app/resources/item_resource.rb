@@ -13,6 +13,9 @@ class ItemResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :user,
+             foreign_key: :seller_id
+
   # Indirect associations
 
 end
