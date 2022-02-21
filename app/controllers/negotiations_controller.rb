@@ -3,7 +3,7 @@ class NegotiationsController < ApplicationController
 
   # GET /negotiations
   def index
-    @negotiations = Negotiation.all
+    @negotiations = Negotiation.page(params[:page]).per(10)
   end
 
   # GET /negotiations/1

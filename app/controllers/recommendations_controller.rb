@@ -3,7 +3,7 @@ class RecommendationsController < ApplicationController
 
   # GET /recommendations
   def index
-    @recommendations = Recommendation.all
+    @recommendations = Recommendation.page(params[:page]).per(10)
   end
 
   # GET /recommendations/1
