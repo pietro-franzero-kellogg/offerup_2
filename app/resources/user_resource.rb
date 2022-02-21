@@ -8,6 +8,8 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :recommendations
+
   has_many   :items,
              foreign_key: :seller_id
 
