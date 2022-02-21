@@ -13,6 +13,8 @@ class ItemResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :recommendations
+
   belongs_to :user,
              foreign_key: :seller_id
 

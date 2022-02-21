@@ -7,6 +7,8 @@ class RecommendationResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :item
+
   belongs_to :user
 
   # Indirect associations
