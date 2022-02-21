@@ -1,27 +1,22 @@
 class NegotiationsController < ApplicationController
   before_action :set_negotiation, only: %i[show edit update destroy]
 
-  # GET /negotiations
   def index
     @q = Negotiation.ransack(params[:q])
     @negotiations = @q.result(distinct: true).includes(:buyer, :item,
                                                        :messages).page(params[:page]).per(10)
   end
 
-  # GET /negotiations/1
   def show
     @message = Message.new
   end
 
-  # GET /negotiations/new
   def new
     @negotiation = Negotiation.new
   end
 
-  # GET /negotiations/1/edit
   def edit; end
 
-  # POST /negotiations
   def create
     @negotiation = Negotiation.new(negotiation_params)
 
@@ -37,7 +32,6 @@ class NegotiationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /negotiations/1
   def update
     if @negotiation.update(negotiation_params)
       redirect_to @negotiation, notice: "Negotiation was successfully updated."
@@ -46,7 +40,6 @@ class NegotiationsController < ApplicationController
     end
   end
 
-  # DELETE /negotiations/1
   def destroy
     @negotiation.destroy
     message = "Negotiation was successfully deleted."
@@ -59,12 +52,10 @@ class NegotiationsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_negotiation
     @negotiation = Negotiation.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def negotiation_params
     params.require(:negotiation).permit(:buyer_id, :seller_id, :item_id,
                                         :completed)
