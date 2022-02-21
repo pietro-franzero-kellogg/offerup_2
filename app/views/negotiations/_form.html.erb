@@ -1,0 +1,108 @@
+<% was_validated = negotiation.errors.any? %>
+
+<%= form_with(model: negotiation, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for buyer_id start -->
+  <div class="form-group">
+    <% buyer_class = "form-control" %>
+    <% buyer_was_invalid = negotiation.errors.include?(:buyer) %>
+
+    <% if was_validated %>
+      <% if buyer_was_invalid %>
+        <% buyer_class << " is-invalid" %>
+      <% else %>
+        <% buyer_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :buyer_id %>
+    <!-- Input for buyer_id start -->
+    <%= f.number_field :buyer_id, class: buyer_class, placeholder: "Enter buyer" %>
+    <!-- Input for buyer_id end -->
+    <% if buyer_was_invalid %>
+      <% negotiation.errors.full_messages_for(:buyer).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for buyer_id end -->
+  <!-- Label and input for seller_id start -->
+  <div class="form-group">
+    <% seller_class = "form-control" %>
+    <% seller_was_invalid = negotiation.errors.include?(:seller) %>
+
+    <% if was_validated %>
+      <% if seller_was_invalid %>
+        <% seller_class << " is-invalid" %>
+      <% else %>
+        <% seller_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :seller_id %>
+    <!-- Input for seller_id start -->
+    <%= f.number_field :seller_id, class: seller_class, placeholder: "Enter seller" %>
+    <!-- Input for seller_id end -->
+    <% if seller_was_invalid %>
+      <% negotiation.errors.full_messages_for(:seller).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for seller_id end -->
+  <!-- Label and input for item_id start -->
+  <div class="form-group">
+    <% item_class = "form-control" %>
+    <% item_was_invalid = negotiation.errors.include?(:item) %>
+
+    <% if was_validated %>
+      <% if item_was_invalid %>
+        <% item_class << " is-invalid" %>
+      <% else %>
+        <% item_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :item_id %>
+    <!-- Input for item_id start -->
+    <%= f.number_field :item_id, class: item_class, placeholder: "Enter item" %>
+    <!-- Input for item_id end -->
+    <% if item_was_invalid %>
+      <% negotiation.errors.full_messages_for(:item).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for item_id end -->
+  <!-- Label and input for completed start -->
+  <div class="form-check">
+    <% completed_class = "form-check-input" %>
+    <% completed_was_invalid = negotiation.errors.include?(:completed) %>
+
+    <% if was_validated %>
+      <% if completed_was_invalid %>
+        <% completed_class << " is-invalid" %>
+      <% else %>
+        <% completed_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :completed, class: "form-check-label" do %>
+      <%= f.check_box :completed, class: completed_class %> Completed
+    <% end %>
+    <% if completed_was_invalid %>
+      <% negotiation.errors.full_messages_for(:completed).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for completed end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :negotiations
   resources :recommendations
   resources :categories
   resources :items
