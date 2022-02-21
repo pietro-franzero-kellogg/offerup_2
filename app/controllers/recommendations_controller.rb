@@ -42,8 +42,14 @@ class RecommendationsController < ApplicationController
   # DELETE /recommendations/1
   def destroy
     @recommendation.destroy
-    redirect_to recommendations_url, notice: 'Recommendation was successfully destroyed.'
+    message = "Recommendation was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to recommendations_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

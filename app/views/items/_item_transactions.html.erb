@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Transactions
+
+    <a data-toggle="collapse" href="#item_transactions_new_form">
+      Add negotiation
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @item.transactions.each do |negotiation| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to negotiation, negotiation %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to negotiation, method: :delete, data: { confirm: "Do you really want to delete this negotiation" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="item_transactions_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
